@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>For My BSF 💖</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    * {margin: 0; padding: 0; box-sizing: border-box;}
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #1a1a2e;
+      color: #fff;
+      overflow: hidden;
+    }
+
+    .screen {
+      width: 100vw;
+      height: 100vh;
+      display: none;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      text-align: center;
+      padding: 25px;
+      animation: fadeIn 1s ease-in-out;
+    }
+
+    .show {
+      display: flex;
+    }
+
+    h1 {
+      font-size: 2.3rem;
+      margin-bottom: 15px;
+      color: #ff66c4;
+      animation: zoom 0.5s ease;
+    }
+
+    p {
+      font-size: 1.2rem;
+      margin-bottom: 25px;
+      color: #f1f1f1;
+    }
+
+    button {
+      padding: 10px 25px;
+      font-size: 1rem;
+      border: none;
+      border-radius: 30px;
+      background: #ff4da6;
+      color: white;
+      cursor: pointer;
+      transition: 0.3s;
+      margin: 5px;
+    }
+
+    button:hover {
+      background: #ff80bf;
+      transform: scale(1.08);
+    }
+
+    .emoji {
+      font-size: 2.5rem;
+      animation: float 2s infinite ease-in-out;
+      margin: 10px;
+    }
+
+    img {
+      max-width: 250px;
+      border-radius: 15px;
+      margin-top: 15px;
+      box-shadow: 0 0 15px #ff3399;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(40px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    @keyframes zoom {
+      from { transform: scale(0.8); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+
+    .hearts {
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 10;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+    }
+
+    .hearts span {
+      position: absolute;
+      font-size: 1.8rem;
+      animation: fly 4s infinite ease-in;
+    }
+
+    @keyframes fly {
+      0% { transform: translateY(0) scale(1); opacity: 1; }
+      100% { transform: translateY(-100vh) scale(0.6); opacity: 0; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="hearts" id="hearts"></div>
+
+<!-- Slide 1 -->
+<div class="screen show" id="screen1">
+  <h1>Oye BSF 😌</h1>
+  <p>Tere jaise dost na milte easily... isliye tujhe sambhal ke rakha hai 💅</p>
+  <div class="emoji">👑💖</div>
+  <button onclick="next()">Aage Chalein?</button>
+</div>
+
+<!-- Slide 2 -->
+<div class="screen" id="screen2">
+  <h1>Tera Vibe = Alag Level</h1>
+  <p>Tu gussa bhi karti hai... but phir bhi cute lagti hai 😤💗</p>
+  <img src="https://media.giphy.com/media/TdfyKrN7HGTIY/giphy.gif" alt="Cute angry girl">
+  <button onclick="next()">Aur Dekh</button>
+</div>
+
+<!-- Slide 3 -->
+<div class="screen" id="screen3">
+  <h1>Tu Roti Hai...</h1>
+  <p>...toh mera mood bhi sad ho jata hai. Par tu hansti hai, toh pura world bright lagta hai 🥺🌸</p>
+  <img src="https://media.giphy.com/media/l0MYC0LajbaPoEADu/giphy.gif" alt="Smile girl">
+  <button onclick="next()">Next 😳</button>
+</div>
+
+<!-- Slide 4 -->
+<div class="screen" id="screen4">
+  <h1>Tu Best Friend Nahi...</h1>
+  <p>Ek full package hai — cute, crazy, caring & full-time bakchod 😜</p>
+  <div class="emoji">🥹💬🍫📱</div>
+  <button onclick="next()">Last Page 😭</button>
+</div>
+
+<!-- Final Slide -->
+<div class="screen" id="screen5">
+  <h1>One Last Thing... 😚</h1>
+  <p>Do you love me? 💌<br><br>(Escape nahi hai, bas sach bol 😏)</p>
+  <img src="https://media.giphy.com/media/jn2UddZ0yqB5i/giphy.gif" alt="cute wink" style="max-width:180px;">
+  <div style="margin-top: 20px;">
+    <button onclick="finalAnswer('But yes 😘')">But yes</button>
+    <button onclick="finalAnswer('Yesss forever 💖')">Yesss</button>
+  </div>
+</div>
+
+<script>
+  let current = 1;
+
+  function next() {
+    document.getElementById("screen" + current).classList.remove("show");
+    current++;
+    document.getElementById("screen" + current).classList.add("show");
+
+    if (current === 5) {
+      dropHearts();
+    }
+  }
+
+  function finalAnswer(answerText) {
+    document.getElementById("screen5").innerHTML = `
+      <h1>Awwww 😍</h1>
+      <p>${answerText}<br><br>Bas ab officially tu meri BSF + 🤫❤️</p>
+      <img src="https://media.giphy.com/media/3oz8xKaR836UJOYeOc/giphy.gif" alt="hug gif" style="max-width:200px; margin-top:20px;">
+    `;
+  }
+
+  function dropHearts() {
+    const heartBox = document.getElementById("hearts");
+    for (let i = 0; i < 50; i++) {
+      const heart = document.createElement("span");
+      heart.innerText = ["💖", "💕", "💓", "💘"][Math.floor(Math.random() * 4)];
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.top = Math.random() * 100 + "vh";
+      heart.style.animationDelay = Math.random() * 4 + "s";
+      heartBox.appendChild(heart);
+    }
+  }
+</script>
+
+</body>
+</html>
